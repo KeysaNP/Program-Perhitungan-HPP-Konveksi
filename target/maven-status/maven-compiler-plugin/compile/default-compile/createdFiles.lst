@@ -3,11 +3,14 @@ com\mycompany\aplikasihppkonveksi\views\LoginView$2.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$4.class
 com\mycompany\aplikasihppkonveksi\model\BomModel.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$6.class
+com\mycompany\aplikasihppkonveksi\views\MainMenuView$15.class
 com\mycompany\aplikasihppkonveksi\views\LoginView$4.class
 com\mycompany\aplikasihppkonveksi\model\HppModel.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$10.class
 com\mycompany\aplikasihppkonveksi\config\koneksi.class
 com\mycompany\aplikasihppkonveksi\views\LoginView$5.class
+com\mycompany\aplikasihppkonveksi\controller\BomController.class
+com\mycompany\aplikasihppkonveksi\views\MainMenuView$13.class
 com\mycompany\aplikasihppkonveksi\views\LoginView.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$1.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$9.class
@@ -27,6 +30,10 @@ com\mycompany\aplikasihppkonveksi\views\MainMenuView$7.class
 com\mycompany\aplikasihppkonveksi\model\TkModel.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$2.class
 com\mycompany\aplikasihppkonveksi\views\MainMenuView$8.class
+com\mycompany\aplikasihppkonveksi\views\MainMenuView$14.class
 com\mycompany\aplikasihppkonveksi\views\LoginView$6.class
+com\mycompany\aplikasihppkonveksi\views\MainMenuView$12.class
+com\mycompany\aplikasihppkonveksi\controller\ProdukController.class
 com\mycompany\aplikasihppkonveksi\views\LoginView$3.class
+com\mycompany\aplikasihppkonveksi\controller\BahanBakuController.class
 com\mycompany\aplikasihppkonveksi\model\ProdukModel.class
