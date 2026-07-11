@@ -408,7 +408,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jTabbedPane1" pref="755" max="32767" attributes="0"/>
+                  <Component id="jTabbedPane1" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -724,7 +724,7 @@
                                       <Component id="jLabel8" min="-2" pref="92" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
+                              <EmptySpace pref="69" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1342,6 +1342,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCariProduk">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCariProdukKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCariProduk">
                   <Properties>
@@ -1510,7 +1513,7 @@
                               <Component id="txtCariBB" min="-2" pref="292" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnCariBB" min="-2" pref="118" max="-2" attributes="0"/>
-                              <EmptySpace pref="63" max="32767" attributes="0"/>
+                              <EmptySpace pref="80" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -1715,7 +1718,7 @@
                                   <Component id="btnHapusBahan" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetBahan" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="24" max="32767" attributes="0"/>
+                              <EmptySpace pref="41" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1845,6 +1848,9 @@
                   </AuxValues>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtCariBB">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCariBBKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnCariBB">
                   <Properties>
@@ -2195,7 +2201,7 @@
                                   <Component id="btnHapusBOM" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetBOM" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace pref="25" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2437,7 +2443,7 @@
                                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="lblTotalSubtotal" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblTotalDtlBom" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane5" max="32767" attributes="0"/>
@@ -2465,8 +2471,8 @@
                                               <Component id="txtHargaDetail" min="-2" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                                   <Component id="txtSatuanDetail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="txtNamaBahanDetail" alignment="0" pref="140" max="32767" attributes="0"/>
-                                                  <Component id="txtKomponen" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="txtKomponen" alignment="0" pref="140" max="32767" attributes="0"/>
+                                                  <Component id="txtQty" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -2482,11 +2488,11 @@
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                               <Component id="jLabel43" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                              <Component id="jComboBox5" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbCariDetailBom" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField9" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="txtCariDtlBom" min="-2" pref="300" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton11" min="-2" pref="142" max="-2" attributes="0"/>
+                              <Component id="btnCariDtlBom" min="-2" pref="142" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2512,10 +2518,10 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="jLabel39" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="txtNamaBahanDetail" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtKomponen" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtKomponen" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtQty" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -2542,17 +2548,17 @@
                           <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblTotalSubtotal" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTotalDtlBom" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="84" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCariDtlBom" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel43" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbCariDetailBom" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCariDtlBom" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="268" max="32767" attributes="0"/>
                           </Group>
@@ -2585,15 +2591,6 @@
                 </Component>
                 <Component class="javax.swing.JComboBox" name="cbKodeBahan">
                   <Properties>
-                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="5">
-                        <StringItem index="0" value="Meter"/>
-                        <StringItem index="1" value="Kg"/>
-                        <StringItem index="2" value="Pcs"/>
-                        <StringItem index="3" value="Roll"/>
-                        <StringItem index="4" value="Lusin"/>
-                      </StringArray>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -2646,12 +2643,12 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nama Bahan"/>
+                    <Property name="text" type="java.lang.String" value="Komponen"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNamaBahanDetail">
-                </Component>
                 <Component class="javax.swing.JTextField" name="txtKomponen">
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtQty">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel40">
                   <Properties>
@@ -2661,7 +2658,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Komponen"/>
+                    <Property name="text" type="java.lang.String" value="Quantity"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel41">
@@ -2708,13 +2705,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnSimpanBOM1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnTambahBOM1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnUbahBOM1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnHapusBOM1" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="btnResetBOM1" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnSimpanDtlBOM" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnTambahDtlBOM" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnUbahDtlBOM" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnHapusDtlBOM" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="btnResetDtlBOM" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2722,22 +2719,22 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnTambahBOM1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnTambahDtlBOM" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnSimpanBOM1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnSimpanDtlBOM" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnUbahBOM1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnUbahDtlBOM" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnHapusBOM1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnHapusDtlBOM" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="btnResetBOM1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnResetDtlBOM" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JButton" name="btnTambahBOM1">
+                    <Component class="javax.swing.JButton" name="btnTambahDtlBOM">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="cc" red="ff" type="rgb"/>
@@ -2751,8 +2748,11 @@
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahDtlBOMActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnSimpanBOM1">
+                    <Component class="javax.swing.JButton" name="btnSimpanDtlBOM">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="cc" red="ff" type="rgb"/>
@@ -2764,10 +2764,10 @@
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanBOM1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanDtlBOMActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnUbahBOM1">
+                    <Component class="javax.swing.JButton" name="btnUbahDtlBOM">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -2778,8 +2778,11 @@
                         <Property name="text" type="java.lang.String" value="Ubah"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUbahDtlBOMActionPerformed"/>
+                      </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnHapusBOM1">
+                    <Component class="javax.swing.JButton" name="btnHapusDtlBOM">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="33" green="0" red="cc" type="rgb"/>
@@ -2791,10 +2794,10 @@
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusBOM1ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHapusDtlBOMActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JButton" name="btnResetBOM1">
+                    <Component class="javax.swing.JButton" name="btnResetDtlBOM">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="66" green="66" red="66" type="rgb"/>
@@ -2805,6 +2808,9 @@
                         <Property name="text" type="java.lang.String" value="Reset"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetDtlBOMActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -2819,12 +2825,15 @@
                     <Property name="text" type="java.lang.String" value="Pencarian"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="jComboBox5">
+                <Component class="javax.swing.JComboBox" name="cbCariDetailBom">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
-                        <StringItem index="0" value="Kode Produk"/>
-                        <StringItem index="1" value="Nama Produk"/>
+                      <StringArray count="5">
+                        <StringItem index="0" value="Kode Detail BOM"/>
+                        <StringItem index="1" value="BOM"/>
+                        <StringItem index="2" value="Nama Bahan"/>
+                        <StringItem index="3" value="Komponen"/>
+                        <StringItem index="4" value="Quantity"/>
                       </StringArray>
                     </Property>
                   </Properties>
@@ -2832,9 +2841,12 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField9">
+                <Component class="javax.swing.JTextField" name="txtCariDtlBom">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TxtCariDtlBomKeyReleased"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton11">
+                <Component class="javax.swing.JButton" name="btnCariDtlBom">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="cc" red="ff" type="rgb"/>
@@ -2844,6 +2856,10 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cari"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCariDtlBomActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnCariDtlBomKeyReleased"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                   <AuxValues>
@@ -2855,14 +2871,12 @@
                     <Component class="javax.swing.JTable" name="tblDetailBOM">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="7" rowCount="4">
-                            <Column editable="true" title="Kode BOM" type="java.lang.Object"/>
+                          <Table columnCount="5" rowCount="4">
+                            <Column editable="true" title="Kode DetailBOM" type="java.lang.Object"/>
+                            <Column editable="true" title="BOM" type="java.lang.Object"/>
                             <Column editable="true" title="Nama Bahan" type="java.lang.Object"/>
                             <Column editable="true" title="Komponen" type="java.lang.Object"/>
-                            <Column editable="true" title="Qty" type="java.lang.Object"/>
-                            <Column editable="true" title="Satuan" type="java.lang.Object"/>
-                            <Column editable="true" title="Harga" type="java.lang.Object"/>
-                            <Column editable="true" title="Subtotal" type="java.lang.Object"/>
+                            <Column editable="true" title="Quantity" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -2908,15 +2922,18 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblDetailBOMMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="lblTotalSubtotal">
+                <Component class="javax.swing.JLabel" name="lblTotalDtlBom">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Subtotal : 0"/>
+                    <Property name="text" type="java.lang.String" value="Total Data : 0"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -2984,7 +3001,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                  <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
@@ -2999,7 +3016,7 @@
                               <Component id="jTextField10" min="-2" pref="300" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton12" min="-2" pref="142" max="-2" attributes="0"/>
-                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <EmptySpace pref="77" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -3123,7 +3140,7 @@
                                   <Component id="btnHapusTK" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetTK" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3401,7 +3418,7 @@
                               <Component id="jTextField11" min="-2" pref="341" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton13" min="-2" pref="140" max="-2" attributes="0"/>
-                              <EmptySpace pref="52" max="32767" attributes="0"/>
+                              <EmptySpace pref="69" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -3589,7 +3606,7 @@
                                   <Component id="btnHapusOverhead" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetOverhead" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace pref="45" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3874,7 +3891,7 @@
                                               <Component id="chkFinishing" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="chkQc" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace pref="23" max="32767" attributes="0"/>
+                                          <EmptySpace pref="40" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="btnHitungEstimasi" max="32767" attributes="0"/>
                                               <Component id="btnSimpanProduksi" pref="144" max="32767" attributes="0"/>
@@ -4356,7 +4373,7 @@
                                   <Component id="jScrollPane10" min="-2" pref="677" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <EmptySpace pref="55" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

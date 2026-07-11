@@ -145,7 +145,7 @@ public class ProdukController {
         }
     }
     
-    public void cariData(JTable table, String field, String keyword){
+    public void cariData(JTable table,String keyword){
 
         DefaultTableModel model = new DefaultTableModel();
 
@@ -157,10 +157,14 @@ public class ProdukController {
         try{
             Connection conn = koneksi.getKoneksi();
 
-            String sql = "SELECT * FROM produk WHERE " + field + " LIKE ?";
+            String sql = "SELECT * FROM produk WHERE kode_produk LIKE ? OR nama_produk LIKE ? OR kategori LIKE ? OR deskripsi LIKE ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + keyword + "%");
+            String searchKey = "%" + keyword + "%";
+            ps.setString(1, searchKey);
+            ps.setString(2, searchKey);
+            ps.setString(3, searchKey);
+            ps.setString(4, searchKey);
 
             ResultSet rs = ps.executeQuery();
 
