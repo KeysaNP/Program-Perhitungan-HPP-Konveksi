@@ -18,6 +18,14 @@ import com.mycompany.aplikasihppkonveksi.model.BahanBakuModel;
 import com.mycompany.aplikasihppkonveksi.model.BomModel;
 import com.mycompany.aplikasihppkonveksi.model.TkModel;
 import com.mycompany.aplikasihppkonveksi.model.OverheadModel;
+import com.mycompany.aplikasihppkonveksi.controller.BomDetailController;
+import com.mycompany.aplikasihppkonveksi.controller.ProdukController;
+import com.mycompany.aplikasihppkonveksi.model.BahanBakuModel;
+import com.mycompany.aplikasihppkonveksi.model.BomModel;
+import com.mycompany.aplikasihppkonveksi.model.DetailBomModel;
+import com.mycompany.aplikasihppkonveksi.model.ItemProduk;
+import com.mycompany.aplikasihppkonveksi.model.ItemBahan;
+import com.mycompany.aplikasihppkonveksi.model.ItemBom;
 import com.mycompany.aplikasihppkonveksi.model.ProdukModel;
 import java.text.DecimalFormat;
 /**
@@ -30,6 +38,7 @@ public class MainMenuView extends javax.swing.JFrame {
     private OverheadController overheadcontroller = new OverheadController();
     private TkController tkcontroller = new TkController();
     private BomController bomcontroller = new BomController();
+    private BomDetailController dtlbomcontroller = new BomDetailController();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenuView.class.getName());
 
     /**
@@ -94,9 +103,10 @@ public class MainMenuView extends javax.swing.JFrame {
         cbBahanBaku.addItem("Satuan");
         cbBahanBaku.addItem("Harga Beli");
         
-        //combobox bom
-        bomcontroller.isiComboBoxProduk(cbProdukBOM);
-        
+        //combobox 
+        bomcontroller.loadProduk(cbProdukBOM);
+        dtlbomcontroller.loadBom(cbKodeBOM);
+        dtlbomcontroller.loadBahan(cbKodeBahan);
         
         
     }
@@ -437,26 +447,26 @@ public class MainMenuView extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         txtKodeDetail = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
-        txtNamaBahanDetail = new javax.swing.JTextField();
         txtKomponen = new javax.swing.JTextField();
+        txtQty = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         txtSatuanDetail = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         txtHargaDetail = new javax.swing.JTextField();
         jPanel19 = new javax.swing.JPanel();
-        btnTambahBOM1 = new javax.swing.JButton();
-        btnSimpanBOM1 = new javax.swing.JButton();
-        btnUbahBOM1 = new javax.swing.JButton();
-        btnHapusBOM1 = new javax.swing.JButton();
-        btnResetBOM1 = new javax.swing.JButton();
+        btnTambahDtlBOM = new javax.swing.JButton();
+        btnSimpanDtlBOM = new javax.swing.JButton();
+        btnUbahDtlBOM = new javax.swing.JButton();
+        btnHapusDtlBOM = new javax.swing.JButton();
+        btnResetDtlBOM = new javax.swing.JButton();
         jLabel43 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jTextField9 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
+        cbCariDetailBom = new javax.swing.JComboBox<>();
+        txtCariDtlBom = new javax.swing.JTextField();
+        btnCariDtlBom = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         tblDetailBOM = new javax.swing.JTable();
-        lblTotalSubtotal = new javax.swing.JLabel();
+        lblTotalDtlBom = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
         txtKodePekerja = new javax.swing.JTextField();
@@ -948,7 +958,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1210,6 +1220,12 @@ public class MainMenuView extends javax.swing.JFrame {
 
         cbCariProduk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Produk", "Nama Produk", "Kategori" }));
 
+        txtCariProduk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCariProdukKeyReleased(evt);
+            }
+        });
+
         btnCariProduk.setBackground(new java.awt.Color(255, 204, 0));
         btnCariProduk.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnCariProduk.setText("Cari");
@@ -1424,7 +1440,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(btnUbahBahan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHapusBahan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnResetBahan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1447,6 +1463,12 @@ public class MainMenuView extends javax.swing.JFrame {
         jLabel29.setText("Pencarian");
 
         cbBahanBaku.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Bahan", "Nama Bahan", "Satuan", "Harga Beli" }));
+
+        txtCariBB.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCariBBKeyReleased(evt);
+            }
+        });
 
         btnCariBB.setBackground(new java.awt.Color(255, 204, 0));
         btnCariBB.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -1533,7 +1555,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(txtCariBB, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(btnCariBB, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(63, Short.MAX_VALUE)))
+                    .addContainerGap(80, Short.MAX_VALUE)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1818,8 +1840,6 @@ public class MainMenuView extends javax.swing.JFrame {
         jLabel36.setForeground(new java.awt.Color(255, 255, 255));
         jLabel36.setText("Kode Bahan");
 
-        cbKodeBahan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Meter", "Kg", "Pcs", "Roll", "Lusin" }));
-
         cbKodeBOM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -1832,11 +1852,11 @@ public class MainMenuView extends javax.swing.JFrame {
 
         jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel39.setText("Nama Bahan");
+        jLabel39.setText("Komponen");
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel40.setText("Komponen");
+        jLabel40.setText("Quantity");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
@@ -1849,33 +1869,36 @@ public class MainMenuView extends javax.swing.JFrame {
         jPanel19.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel19.setOpaque(false);
 
-        btnTambahBOM1.setBackground(new java.awt.Color(255, 204, 0));
-        btnTambahBOM1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnTambahBOM1.setText("+ Tambah");
-        btnTambahBOM1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnTambahBOM1.setFocusPainted(false);
+        btnTambahDtlBOM.setBackground(new java.awt.Color(255, 204, 0));
+        btnTambahDtlBOM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnTambahDtlBOM.setText("+ Tambah");
+        btnTambahDtlBOM.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnTambahDtlBOM.setFocusPainted(false);
+        btnTambahDtlBOM.addActionListener(this::btnTambahDtlBOMActionPerformed);
 
-        btnSimpanBOM1.setBackground(new java.awt.Color(255, 204, 0));
-        btnSimpanBOM1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnSimpanBOM1.setText("Simpan");
-        btnSimpanBOM1.setFocusPainted(false);
-        btnSimpanBOM1.addActionListener(this::btnSimpanBOM1ActionPerformed);
+        btnSimpanDtlBOM.setBackground(new java.awt.Color(255, 204, 0));
+        btnSimpanDtlBOM.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnSimpanDtlBOM.setText("Simpan");
+        btnSimpanDtlBOM.setFocusPainted(false);
+        btnSimpanDtlBOM.addActionListener(this::btnSimpanDtlBOMActionPerformed);
 
-        btnUbahBOM1.setBackground(new java.awt.Color(102, 102, 102));
-        btnUbahBOM1.setForeground(new java.awt.Color(255, 255, 255));
-        btnUbahBOM1.setText("Ubah");
-        btnUbahBOM1.setFocusPainted(false);
+        btnUbahDtlBOM.setBackground(new java.awt.Color(102, 102, 102));
+        btnUbahDtlBOM.setForeground(new java.awt.Color(255, 255, 255));
+        btnUbahDtlBOM.setText("Ubah");
+        btnUbahDtlBOM.setFocusPainted(false);
+        btnUbahDtlBOM.addActionListener(this::btnUbahDtlBOMActionPerformed);
 
-        btnHapusBOM1.setBackground(new java.awt.Color(204, 0, 51));
-        btnHapusBOM1.setForeground(new java.awt.Color(255, 255, 255));
-        btnHapusBOM1.setText("- Hapus");
-        btnHapusBOM1.setFocusPainted(false);
-        btnHapusBOM1.addActionListener(this::btnHapusBOM1ActionPerformed);
+        btnHapusDtlBOM.setBackground(new java.awt.Color(204, 0, 51));
+        btnHapusDtlBOM.setForeground(new java.awt.Color(255, 255, 255));
+        btnHapusDtlBOM.setText("- Hapus");
+        btnHapusDtlBOM.setFocusPainted(false);
+        btnHapusDtlBOM.addActionListener(this::btnHapusDtlBOMActionPerformed);
 
-        btnResetBOM1.setBackground(new java.awt.Color(102, 102, 102));
-        btnResetBOM1.setForeground(new java.awt.Color(255, 255, 255));
-        btnResetBOM1.setText("Reset");
-        btnResetBOM1.setFocusPainted(false);
+        btnResetDtlBOM.setBackground(new java.awt.Color(102, 102, 102));
+        btnResetDtlBOM.setForeground(new java.awt.Color(255, 255, 255));
+        btnResetDtlBOM.setText("Reset");
+        btnResetDtlBOM.setFocusPainted(false);
+        btnResetDtlBOM.addActionListener(this::btnResetDtlBOMActionPerformed);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -1884,26 +1907,26 @@ public class MainMenuView extends javax.swing.JFrame {
             .addGroup(jPanel19Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnSimpanBOM1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTambahBOM1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnUbahBOM1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHapusBOM1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnResetBOM1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                    .addComponent(btnSimpanDtlBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTambahDtlBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUbahDtlBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHapusDtlBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnResetDtlBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel19Layout.setVerticalGroup(
             jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTambahBOM1)
+                .addComponent(btnTambahDtlBOM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSimpanBOM1)
+                .addComponent(btnSimpanDtlBOM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUbahBOM1)
+                .addComponent(btnUbahDtlBOM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnHapusBOM1)
+                .addComponent(btnHapusDtlBOM)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnResetBOM1)
+                .addComponent(btnResetDtlBOM)
                 .addContainerGap())
         );
 
@@ -1911,27 +1934,44 @@ public class MainMenuView extends javax.swing.JFrame {
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
         jLabel43.setText("Pencarian");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Produk", "Nama Produk" }));
+        cbCariDetailBom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Detail BOM", "BOM", "Nama Bahan", "Komponen", "Quantity" }));
 
-        jButton11.setBackground(new java.awt.Color(255, 204, 0));
-        jButton11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton11.setText("Cari");
+        txtCariDtlBom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TxtCariDtlBomKeyReleased(evt);
+            }
+        });
+
+        btnCariDtlBom.setBackground(new java.awt.Color(255, 204, 0));
+        btnCariDtlBom.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCariDtlBom.setText("Cari");
+        btnCariDtlBom.addActionListener(this::btnCariDtlBomActionPerformed);
+        btnCariDtlBom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                btnCariDtlBomKeyReleased(evt);
+            }
+        });
 
         tblDetailBOM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Kode BOM", "Nama Bahan", "Komponen", "Qty", "Satuan", "Harga", "Subtotal"
+                "Kode DetailBOM", "BOM", "Nama Bahan", "Komponen", "Quantity"
             }
         ));
+        tblDetailBOM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDetailBOMMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tblDetailBOM);
 
-        lblTotalSubtotal.setForeground(new java.awt.Color(255, 255, 255));
-        lblTotalSubtotal.setText("Subtotal : 0");
+        lblTotalDtlBom.setForeground(new java.awt.Color(255, 255, 255));
+        lblTotalDtlBom.setText("Total Data : 0");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1946,7 +1986,7 @@ public class MainMenuView extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(lblTotalSubtotal)
+                                .addComponent(lblTotalDtlBom)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane5)
                             .addGroup(jPanel8Layout.createSequentialGroup()
@@ -1970,8 +2010,8 @@ public class MainMenuView extends javax.swing.JFrame {
                                     .addComponent(txtHargaDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtSatuanDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNamaBahanDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                                        .addComponent(txtKomponen)))
+                                        .addComponent(txtKomponen, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                                        .addComponent(txtQty)))
                                 .addGap(34, 34, 34)
                                 .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(62, 62, 62))
@@ -1980,11 +2020,11 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGap(59, 59, 59)
                     .addComponent(jLabel43)
                     .addGap(4, 4, 4)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbCariDetailBom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCariDtlBom, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCariDtlBom, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(60, 60, 60)))
         );
         jPanel8Layout.setVerticalGroup(
@@ -2005,9 +2045,9 @@ public class MainMenuView extends javax.swing.JFrame {
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel39)
-                                    .addComponent(txtNamaBahanDetail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtKomponen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(txtKomponen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtQty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel36)
@@ -2027,16 +2067,16 @@ public class MainMenuView extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblTotalSubtotal)
+                .addComponent(lblTotalDtlBom)
                 .addContainerGap(84, Short.MAX_VALUE))
             .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel8Layout.createSequentialGroup()
                     .addGap(271, 271, 271)
                     .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton11)
+                        .addComponent(btnCariDtlBom)
                         .addComponent(jLabel43)
-                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbCariDetailBom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCariDtlBom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(268, Short.MAX_VALUE)))
         );
 
@@ -2206,7 +2246,7 @@ public class MainMenuView extends javax.swing.JFrame {
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTotalPekerja)
                                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                        .addGap(0, 18, Short.MAX_VALUE)))
                 .addGap(61, 61, 61))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
@@ -2338,7 +2378,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(btnUbahOverhead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHapusOverhead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnResetOverhead, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel21Layout.setVerticalGroup(
             jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2448,7 +2488,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(txtCariOverhead, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(52, Short.MAX_VALUE)))
+                    .addContainerGap(69, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2657,7 +2697,7 @@ public class MainMenuView extends javax.swing.JFrame {
                                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(chkFinishing)
                                     .addComponent(chkQc))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnHitungEstimasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnSimpanProduksi, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))))
@@ -2921,7 +2961,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblTotalDataHPP)
                         .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3151,7 +3191,7 @@ public class MainMenuView extends javax.swing.JFrame {
             produkcontroller.hapusData(model);
 
             produkcontroller.tampilData(tblProduk);
-
+            btnResetActionPerformed(null);
             lblTotalDataProduk.setText("Total Data : " + tblProduk.getRowCount());
         
         }
@@ -3159,7 +3199,7 @@ public class MainMenuView extends javax.swing.JFrame {
 
     private void btnHapusBahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusBahanActionPerformed
         // TODO add your handling code here:
-        String kode = txtKodeProduk.getText().trim();
+        String kode = txtKodeBahan.getText().trim();
     
         // Validasi apakah  dipilih/akan dihapus
         if (kode.isEmpty()) {
@@ -3179,9 +3219,8 @@ public class MainMenuView extends javax.swing.JFrame {
             controller.hapusData(model);
 
             controller.tampilData(tblBahanBaku);
-            
+            btnResetBahanActionPerformed(null);
             lblTotalBahan.setText("Total Data : " + tblBahanBaku.getRowCount());
-        
         }
     }//GEN-LAST:event_btnHapusBahanActionPerformed
 
@@ -3192,7 +3231,7 @@ public class MainMenuView extends javax.swing.JFrame {
 
     private void btnHapusBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusBOMActionPerformed
         // TODO add your handling code here:
-         String kode = txtKodeBOM.getText().trim();
+        String kode = txtKodeBOM.getText().trim();
     
         // Validasi apakah  dipilih/akan dihapus
         if (kode.isEmpty()) {
@@ -3212,6 +3251,7 @@ public class MainMenuView extends javax.swing.JFrame {
             bomcontroller.hapusData(model);
 
             bomcontroller.tampilData(tblBOM);
+            btnResetBOMActionPerformed(null);
             lblTotalBOM.setText("Total Data : " + tblBOM.getRowCount());
         }
     }//GEN-LAST:event_btnHapusBOMActionPerformed
@@ -3221,9 +3261,32 @@ public class MainMenuView extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void btnHapusBOM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusBOM1ActionPerformed
+    private void btnHapusDtlBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusDtlBOMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnHapusBOM1ActionPerformed
+        String kode = txtKodeDetail.getText().trim();
+    
+        // Validasi apakah  dipilih/akan dihapus
+        if (kode.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih kode detail bom yang ingin dihapus dari tabel terlebih dahulu!");
+            return;
+        }
+
+        // Konfirmasi hapus data demi keamanan data konveksi
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(this, 
+                "Apakah Anda yakin ingin menghapus detail bom dengan kode: " + kode + "?", 
+                "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+            DetailBomModel model = new DetailBomModel();
+            model.setKodeDtlBom(kode);
+
+            dtlbomcontroller.hapusData(model);
+
+            dtlbomcontroller.tampilData(tblDetailBOM);
+            btnTambahDtlBOMActionPerformed(null);
+            lblTotalDtlBom.setText("Total Data : " + tblDetailBOM.getRowCount());
+        }
+    }//GEN-LAST:event_btnHapusDtlBOMActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -3349,7 +3412,7 @@ public class MainMenuView extends javax.swing.JFrame {
 
         } catch (NumberFormatException e) {
             // Menangkap eror jika Quantity atau Harga kosong / diisi huruf
-            javax.swing.JOptionPane.showMessageDialog(this, "Quantity Beli dan Harga Beli harus berupa angka yang valid dan tidak boleh kosong!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Field tidak boleh kosong!");
         }
     }//GEN-LAST:event_btnSimpanBahanActionPerformed
 
@@ -3380,7 +3443,7 @@ public class MainMenuView extends javax.swing.JFrame {
             
 
         } catch (NumberFormatException e) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Quantity Beli dan Harga Beli harus berupa angka yang valid!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Pilih dulu data yang akan dihapus !");
         }
     }//GEN-LAST:event_btnUbahBahanActionPerformed
 
@@ -3452,12 +3515,12 @@ public class MainMenuView extends javax.swing.JFrame {
             break;
         }
 
-        controller.cariData(tblBahanBaku, field, txtCariBB.getText());
+        controller.cariData(tblBahanBaku,  txtCariBB.getText());
         
         if(txtCariBB.getText().trim().isEmpty()){
             controller.tampilData(tblBahanBaku);
         }else{
-            controller.cariData(tblBahanBaku, field, txtCariBB.getText());
+            controller.cariData(tblBahanBaku, txtCariBB.getText());
         }
     }//GEN-LAST:event_btnCariBBActionPerformed
 
@@ -3574,21 +3637,21 @@ public class MainMenuView extends javax.swing.JFrame {
             break;
         }
 
-        produkcontroller.cariData(tblProduk, field, txtCariProduk.getText());
+        produkcontroller.cariData(tblProduk, txtCariProduk.getText());
         
         if(txtCariProduk.getText().trim().isEmpty()){
             produkcontroller.tampilData(tblProduk);
         }else{
-            produkcontroller.cariData(tblProduk, field, txtCariProduk.getText());
+            produkcontroller.cariData(tblProduk, txtCariProduk.getText());
         }
     }//GEN-LAST:event_btnCariProdukActionPerformed
 
     private void btnSimpanBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBOMActionPerformed
         // TODO add your handling code here:
         BomModel model = new BomModel();
-        String kodeTerpilih = cbProdukBOM.getSelectedItem().toString();
+        ItemProduk item = (ItemProduk) cbProdukBOM.getSelectedItem();
         model.setKodeBom(txtKodeBOM.getText());
-        model.setKodeProduk(kodeTerpilih);
+        model.setKodeProduk(item.getKodeProduk());
         model.setUkuran(cbUkuranBOM.getSelectedItem().toString()); 
         model.setKombinasi(txtKombinasiWarna.getText());
         model.setKet(txtKetaranganBOM.getText());
@@ -3621,9 +3684,9 @@ public class MainMenuView extends javax.swing.JFrame {
         }
 
         BomModel model = new BomModel();
-        String kodeTerpilih = cbProdukBOM.getSelectedItem().toString();
+        ItemProduk item = (ItemProduk) cbProdukBOM.getSelectedItem();
         model.setKodeBom(kode);
-        model.setKodeProduk(kodeTerpilih); 
+        model.setKodeProduk(item.getKodeProduk()); 
         model.setUkuran(cbUkuranBOM.getSelectedItem().toString()); 
         model.setKombinasi(txtKombinasiWarna.getText());
         model.setKet(txtKetaranganBOM.getText());
@@ -3668,12 +3731,12 @@ public class MainMenuView extends javax.swing.JFrame {
             break;
         }
 
-        bomcontroller.cariData(tblBOM, field, txtCariBom.getText());
+        bomcontroller.cariData(tblBOM,  txtCariBom.getText());
         
         if(txtCariBom.getText().trim().isEmpty()){
             bomcontroller.tampilData(tblBOM);
         }else{
-            bomcontroller.cariData(tblBOM, field, txtCariBom.getText());
+            bomcontroller.cariData(tblBOM, txtCariBom.getText());
         }
     }//GEN-LAST:event_btnCariBomActionPerformed
 
@@ -3682,7 +3745,7 @@ public class MainMenuView extends javax.swing.JFrame {
         int baris = tblBOM.getSelectedRow();
     
         txtKodeBOM.setText(tblBOM.getValueAt(baris, 0).toString());
-        cbProdukBOM.setSelectedItem(tblBOM.getValueAt(baris, 1).toString());
+        bomcontroller.pilihProduk(cbProdukBOM,tblBOM.getValueAt(baris, 1).toString());
         cbUkuranBOM.setSelectedItem(tblBOM.getValueAt(baris, 2).toString());
         txtKombinasiWarna.setText(tblBOM.getValueAt(baris, 3).toString());
         txtKetaranganBOM.setText(tblBOM.getValueAt(baris, 4).toString());
@@ -3690,31 +3753,181 @@ public class MainMenuView extends javax.swing.JFrame {
         aturForm(false);
     }//GEN-LAST:event_tblBOMMouseClicked
 
-    private void btnSimpanBOM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanBOM1ActionPerformed
+    private void btnSimpanDtlBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanDtlBOMActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnSimpanBOM1ActionPerformed
+        DetailBomModel model = new DetailBomModel();
+        ItemBahan bahan = (ItemBahan) cbKodeBahan.getSelectedItem();
+        ItemBom bom = (ItemBom) cbKodeBOM.getSelectedItem();
+        model.setKodeDtlBom(txtKodeDetail.getText());
+        model.setKodeBom(bom.getKodeBom());
+        model.setKodeBahan(bahan.getKodeBahan());
+        model.setKomponen(txtKomponen.getText());  
+        model.setQty(Double.parseDouble(txtQty.getText()));
+
+        dtlbomcontroller.simpanData(model);
+        dtlbomcontroller.tampilData(tblDetailBOM);
+        
+        btnTambahBOMActionPerformed(null);
+        
+        lblTotalDtlBom.setText("Total Data : " + tblDetailBOM.getRowCount());
+    }//GEN-LAST:event_btnSimpanDtlBOMActionPerformed
 
     private void txtCariKeyRealesed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyRealesed
         // TODO add your handling code here:
-        String kriteria = cbCariBom.getSelectedItem().toString();
         String keyword = txtCariBom.getText().trim();
-        String kolomDb = "";
-
-        // Terjemahkan kriteria dari ComboBox ke nama kolom asli di MySQL
-        if (kriteria.equals("Kode BOM")) {
-            kolomDb = "kode_bom";
-        } else if (kriteria.equals("Kode Produk")) {
-            kolomDb = "kode_produk";
+        
+        if (keyword.isEmpty()) {
+            bomcontroller.tampilData(tblBOM);
         } else {
-            // Jaga-jaga jika teks kriteria tidak pas atau ada pilihan lain
-            kolomDb = "kode_bom"; 
+            bomcontroller.cariData(tblBOM, keyword);
+        }
+        
+        lblTotalBOM.setText("Total Data : " + tblBOM.getRowCount());
+           
+    }//GEN-LAST:event_txtCariKeyRealesed
+
+    private void btnTambahDtlBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahDtlBOMActionPerformed
+        // TODO add your handling code here:
+        txtKodeDetail.setText("");
+        cbKodeBOM.setSelectedIndex(0); 
+        cbKodeBahan.setSelectedIndex(0); 
+        txtKomponen.setText("");
+        txtQty.setText("");
+
+        aturForm(true);
+    }//GEN-LAST:event_btnTambahDtlBOMActionPerformed
+
+    private void btnResetDtlBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetDtlBOMActionPerformed
+        // TODO add your handling code here:
+        txtKodeDetail.setText("");
+        cbKodeBOM.setSelectedIndex(0); 
+        cbKodeBahan.setSelectedIndex(0); 
+        txtKomponen.setText("");
+        txtQty.setText("");
+
+        aturForm(true);
+    }//GEN-LAST:event_btnResetDtlBOMActionPerformed
+
+    private void btnUbahDtlBOMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahDtlBOMActionPerformed
+        // TODO add your handling code here:
+        String kode = txtKodeDetail.getText().trim();
+        if (kode.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data detail BOM yang ingin diubah dari tabel terlebih dahulu!");
+            return;
         }
 
+        DetailBomModel model = new DetailBomModel();
+        ItemBahan bahan = (ItemBahan) cbKodeBahan.getSelectedItem();
+        ItemBom bom = (ItemBom) cbKodeBOM.getSelectedItem();
+        model.setKodeDtlBom(txtKodeDetail.getText());
+        model.setKodeBom(bom.getKodeBom());
+        model.setKodeBahan(bahan.getKodeBahan());
+        model.setKomponen(txtKomponen.getText()); 
+        model.setQty(Double.parseDouble(txtQty.getText()));
+
+        dtlbomcontroller.ubahData(model);
+        dtlbomcontroller.tampilData(tblDetailBOM);
+        
+        btnTambahBOMActionPerformed(null);
+        aturForm(false);
+    }//GEN-LAST:event_btnUbahDtlBOMActionPerformed
+
+    private void tblDetailBOMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDetailBOMMouseClicked
+        // TODO add your handling code here:
+        int baris = tblDetailBOM.getSelectedRow();
+    
+        txtKodeDetail.setText(tblDetailBOM.getValueAt(baris, 0).toString());
+        dtlbomcontroller.pilihBom(cbKodeBOM,tblDetailBOM.getValueAt(baris, 1).toString());
+        dtlbomcontroller.pilihBahan(cbKodeBahan,tblDetailBOM.getValueAt(baris, 2).toString());
+        txtKomponen.setText(tblDetailBOM.getValueAt(baris, 3).toString());
+        txtQty.setText(tblDetailBOM.getValueAt(baris, 4).toString());
+        
+        aturForm(false);
+    }//GEN-LAST:event_tblDetailBOMMouseClicked
+
+    private void btnCariDtlBomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariDtlBomActionPerformed
+        // TODO add your handling code here:
+        String field = "";
+        switch (cbCariDetailBom.getSelectedItem().toString()) {
+
+        case "Kode Detail Bom":
+            field = "kode_detail_bom";
+            break;
+            
+        case "BOM":
+            field = "keterangan";
+            break;
+            
+        case "Nama Bahan":
+            field = "nama_bahan";
+            break;
+
+        case "Komponen":
+            field = "komponen";
+            break;
+            
+        case "Qty":
+            field = "qty";
+            break;
+        } 
+
+        dtlbomcontroller.cariData(tblDetailBOM,  txtCariDtlBom.getText());
+        
+        if(txtCariDtlBom.getText().trim().isEmpty()){
+            dtlbomcontroller.tampilData(tblDetailBOM);
+        }else{
+            dtlbomcontroller.cariData(tblDetailBOM, txtCariDtlBom.getText());
+        }
+    }//GEN-LAST:event_btnCariDtlBomActionPerformed
+
+    private void TxtCariDtlBomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtCariDtlBomKeyReleased
+        // TODO add your handling code here:
+       
+        String keyword = txtCariDtlBom.getText().trim();
+        
+
+        // Terjemahkan kriteria dari ComboBox ke nama kolom asli di MySQL
+        if (keyword.isEmpty()) {
+            dtlbomcontroller.tampilData(tblDetailBOM);
+        } else {
+            dtlbomcontroller.cariData(tblDetailBOM, keyword);
+        }
+ 
         // Panggil controller menggunakan nama kolom database yang benar
-        bomcontroller.cariData(tblBOM, kolomDb, keyword);
+        dtlbomcontroller.cariData(tblDetailBOM, keyword);
         // Update total data
-        lblTotalBOM.setText("Total Data : " + tblBOM.getRowCount());
-    }//GEN-LAST:event_txtCariKeyRealesed
+        lblTotalDtlBom.setText("Total Data : " + tblDetailBOM.getRowCount());
+    }//GEN-LAST:event_TxtCariDtlBomKeyReleased
+
+    private void btnCariDtlBomKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariDtlBomKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCariDtlBomKeyReleased
+
+    private void txtCariProdukKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariProdukKeyReleased
+        // TODO add your handling code here:
+        String keyword = txtCariProduk.getText().trim();
+        
+        if (keyword.isEmpty()) {
+            produkcontroller.tampilData(tblProduk);
+        } else {
+            produkcontroller.cariData(tblProduk, keyword);
+        }
+        
+        lblTotalDataProduk.setText("Total Data : " + tblProduk.getRowCount());
+    }//GEN-LAST:event_txtCariProdukKeyReleased
+
+    private void txtCariBBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariBBKeyReleased
+        // TODO add your handling code here:
+        String keyword = txtCariBB.getText().trim();
+        
+        if (keyword.isEmpty()) {
+            controller.tampilData(tblBahanBaku);
+        } else {
+            controller.cariData(tblBahanBaku, keyword);
+        }
+        
+        lblTotalBahan.setText("Total Data : " + tblBahanBaku.getRowCount());
+    }//GEN-LAST:event_txtCariBBKeyReleased
 
     private void btnSimpanOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanOverheadActionPerformed
         // TODO add your handling code here:
@@ -3928,12 +4141,13 @@ public class MainMenuView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCariBB;
     private javax.swing.JButton btnCariBom;
+    private javax.swing.JButton btnCariDtlBom;
     private javax.swing.JButton btnCariProduk;
     private javax.swing.JButton btnDashboard1;
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnHapusBOM;
-    private javax.swing.JButton btnHapusBOM1;
     private javax.swing.JButton btnHapusBahan;
+    private javax.swing.JButton btnHapusDtlBOM;
     private javax.swing.JButton btnHapusOverhead;
     private javax.swing.JButton btnHapusTK;
     private javax.swing.JButton btnHitungEstimasi;
@@ -3944,36 +4158,37 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JButton btnMasterProduk4;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnResetBOM;
-    private javax.swing.JButton btnResetBOM1;
     private javax.swing.JButton btnResetBahan;
+    private javax.swing.JButton btnResetDtlBOM;
     private javax.swing.JButton btnResetHPP;
     private javax.swing.JButton btnResetOverhead;
     private javax.swing.JButton btnResetTK;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnSimpanBOM;
-    private javax.swing.JButton btnSimpanBOM1;
     private javax.swing.JButton btnSimpanBahan;
+    private javax.swing.JButton btnSimpanDtlBOM;
     private javax.swing.JButton btnSimpanHPP;
     private javax.swing.JButton btnSimpanOverhead;
     private javax.swing.JButton btnSimpanProduksi;
     private javax.swing.JButton btnSimpanTK;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnTambahBOM;
-    private javax.swing.JButton btnTambahBOM1;
     private javax.swing.JButton btnTambahBahan;
+    private javax.swing.JButton btnTambahDtlBOM;
     private javax.swing.JButton btnTambahOverhead;
     private javax.swing.JButton btnTambahTK;
     private javax.swing.JButton btnTransaksi;
     private javax.swing.JButton btnTransaksiProduksi;
     private javax.swing.JButton btnUbah;
     private javax.swing.JButton btnUbahBOM;
-    private javax.swing.JButton btnUbahBOM1;
     private javax.swing.JButton btnUbahBahan;
+    private javax.swing.JButton btnUbahDtlBOM;
     private javax.swing.JButton btnUbahOverhead;
     private javax.swing.JButton btnUbahTK;
     private javax.swing.JComboBox<String> cbBOMProduksi;
     private javax.swing.JComboBox<String> cbBahanBaku;
     private javax.swing.JComboBox<String> cbCariBom;
+    private javax.swing.JComboBox<String> cbCariDetailBom;
     private javax.swing.JComboBox<String> cbCariProduk;
     private javax.swing.JComboBox<String> cbKategori;
     private javax.swing.JComboBox<String> cbKodeBOM;
@@ -3991,7 +4206,6 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkPotong;
     private javax.swing.JCheckBox chkQc;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
@@ -3999,7 +4213,6 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
@@ -4122,12 +4335,12 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JLabel lblTotalBahanBaku;
     private javax.swing.JLabel lblTotalDataHPP;
     private javax.swing.JLabel lblTotalDataProduk;
+    private javax.swing.JLabel lblTotalDtlBom;
     private javax.swing.JLabel lblTotalHPP;
     private javax.swing.JLabel lblTotalOverhead;
     private javax.swing.JLabel lblTotalPekerja;
     private javax.swing.JLabel lblTotalProduk;
     private javax.swing.JLabel lblTotalProduksi;
-    private javax.swing.JLabel lblTotalSubtotal;
     private javax.swing.JLabel lblwaktu;
     private javax.swing.JPanel panelSisaMenu;
     private javax.swing.JPanel panelSubMaster;
@@ -4173,6 +4386,7 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtPosisi;
     private javax.swing.JTextField txtProdukHPP;
     private javax.swing.JComboBox<String> txtProdukTransaksi;
+    private javax.swing.JTextField txtQty;
     private javax.swing.JTextField txtQtyBeli;
     private javax.swing.JTextField txtSatuanDetail;
     private javax.swing.JTextField txtTanggalHPP;

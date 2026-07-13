@@ -6,6 +6,7 @@ package com.mycompany.aplikasihppkonveksi.controller;
 
 import com.mycompany.aplikasihppkonveksi.config.koneksi;
 import com.mycompany.aplikasihppkonveksi.model.BomModel;
+import com.mycompany.aplikasihppkonveksi.model.ItemProduk;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -13,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import java.sql.PreparedStatement;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 /**
  *
@@ -23,7 +25,7 @@ public class BomController {
         DefaultTableModel model = new DefaultTableModel();
         
         model.addColumn("KODE BOM");
-        model.addColumn("KODE PRODUK");
+        model.addColumn("NAMA PRODUK");
         model.addColumn("UKURAN");
         model.addColumn("KOMBINASI WARNA ");
         model.addColumn("KETERANGAN");
@@ -31,7 +33,7 @@ public class BomController {
         try{
             Connection conn = koneksi.getKoneksi();
             
-            String sql = "SELECT * FROM bom ";
+            String sql = "SELECT b.kode_bom, p.kode_produk,p.nama_produk, b.ukuran, b.kombinasi_warna, b.keterangan FROM bom b JOIN produk p ON b.kode_produk = p.kode_produk";
             Statement st = conn.createStatement();
             
             ResultSet rs = st.executeQuery(sql);
@@ -39,7 +41,7 @@ public class BomController {
             while(rs.next()){
                 model.addRow(new Object[]{
                     rs.getString("kode_bom"),
-                    rs.getString("kode_produk"),
+                    rs.getString("nama_produk"),
                     rs.getString("ukuran"),
                     rs.getString("kombinasi_warna"),
                     rs.getString("keterangan"),
@@ -52,24 +54,31 @@ public class BomController {
         }
     }
     
-    public void isiComboBoxProduk(javax.swing.JComboBox<String> comboBox) {
-        // Kosongkan combo box terlebih dahulu agar data tidak menumpuk saat di-refresh
-        comboBox.removeAllItems();
-        comboBox.addItem("- Pilih Kode Produk -");
+    public void loadProduk(JComboBox cmbProduk){
+        try{
 
-        try {
             Connection conn = koneksi.getKoneksi();
-            // Ambil data kode_produk murni dari tabel produk
-            String sql = "SELECT kode_produk FROM produk ORDER BY kode_produk ASC";
+
+            String sql = "SELECT kode_produk,nama_produk FROM produk ORDER BY nama_produk";
+
             Statement st = conn.createStatement();
+
             ResultSet rs = st.executeQuery(sql);
 
-            while (rs.next()) {
-                // Masukkan kode produk satu per satu ke dalam JComboBox
-                comboBox.addItem(rs.getString("kode_produk"));
+            cmbProduk.removeAllItems();
+
+            while(rs.next()){
+
+                cmbProduk.addItem(
+                    new ItemProduk(
+                        rs.getString("kode_produk"),
+                        rs.getString("nama_produk")
+                    )
+                );
             }
-        } catch (Exception e) {
-            System.out.println("Gagal memuat data combo box produk: " + e.getMessage());
+
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
     
@@ -171,7 +180,7 @@ public class BomController {
         }
     }
     
-    public void cariData(JTable table, String field, String keyword){
+    public void cariData(JTable table, String keyword){
 
         DefaultTableModel model = new DefaultTableModel();
 
@@ -184,10 +193,15 @@ public class BomController {
         try{
             Connection conn = koneksi.getKoneksi();
 
-            String sql = "SELECT * FROM bom WHERE " + field + " LIKE ?";
+            String sql = "SELECT * FROM bom WHERE kode_bom LIKE ? OR kode_produk LIKE ? OR ukuran LIKE ? OR kombinasi_warna LIKE ? OR keterangan LIKE ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + keyword + "%");
+            String searchKey = "%" + keyword + "%";
+            ps.setString(1, searchKey);
+            ps.setString(2, searchKey);
+            ps.setString(3, searchKey);
+            ps.setString(4, searchKey);
+            ps.setString(5, searchKey);
 
             ResultSet rs = ps.executeQuery();
 
@@ -205,6 +219,19 @@ public class BomController {
 
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }
+    
+    public void pilihProduk(JComboBox cbProduk, String namaProduk) {
+
+        for (int i = 0; i < cbProduk.getItemCount(); i++) {
+
+            ItemProduk item = (ItemProduk) cbProduk.getItemAt(i);
+
+            if (item.getNamaProduk().equals(namaProduk)) {
+                cbProduk.setSelectedIndex(i);
+                break;
+            }
         }
     }
 }
