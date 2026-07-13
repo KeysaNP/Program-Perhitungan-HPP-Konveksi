@@ -11,9 +11,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import com.mycompany.aplikasihppkonveksi.controller.BahanBakuController;
 import com.mycompany.aplikasihppkonveksi.controller.BomController;
+import com.mycompany.aplikasihppkonveksi.controller.OverheadController;
+import com.mycompany.aplikasihppkonveksi.controller.TkController;
 import com.mycompany.aplikasihppkonveksi.controller.ProdukController;
 import com.mycompany.aplikasihppkonveksi.model.BahanBakuModel;
 import com.mycompany.aplikasihppkonveksi.model.BomModel;
+import com.mycompany.aplikasihppkonveksi.model.TkModel;
+import com.mycompany.aplikasihppkonveksi.model.OverheadModel;
 import com.mycompany.aplikasihppkonveksi.model.ProdukModel;
 import java.text.DecimalFormat;
 /**
@@ -23,6 +27,8 @@ import java.text.DecimalFormat;
 public class MainMenuView extends javax.swing.JFrame {
     private BahanBakuController controller = new BahanBakuController();
     private ProdukController produkcontroller = new ProdukController();
+    private OverheadController overheadcontroller = new OverheadController();
+    private TkController tkcontroller = new TkController();
     private BomController bomcontroller = new BomController();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenuView.class.getName());
 
@@ -65,15 +71,21 @@ public class MainMenuView extends javax.swing.JFrame {
         initPerhitunganHPP();
         
         
-        //memanggil controller
+        //menampilkan data
         controller.tampilData(tblBahanBaku);
         produkcontroller.tampilData(tblProduk);
         bomcontroller.tampilData(tblBOM);
+        overheadcontroller.tampildata(tblOverhead);
+        tkcontroller.tampildata(tblTenagaKerja);
+        
         
         //menampilkan jumlah data
         lblTotalBahan.setText("Total Data : " + tblBahanBaku.getRowCount());
         lblTotalDataProduk.setText("Total Data : " + tblProduk.getRowCount());
         lblTotalBOM.setText("Total Data : " + tblBOM.getRowCount());
+        lblTotalOverhead.setText("Total Data : " + tblOverhead.getRowCount());
+        lblTotalPekerja.setText("Total Data : " + tblTenagaKerja.getRowCount());
+        
         
         //inisialisasi untuk combo box cari di bahan baku
         cbBahanBaku.removeAllItems();
@@ -94,6 +106,7 @@ public class MainMenuView extends javax.swing.JFrame {
         txtKodeBahan.setEditable(status);
         txtKodeProduk.setEditable(status);
         txtKodeBOM.setEditable(status);
+        txtKodePekerja.setEditable(status);
     }
     
     
@@ -460,23 +473,24 @@ public class MainMenuView extends javax.swing.JFrame {
         cbPosisi = new javax.swing.JComboBox<>();
         jLabel47 = new javax.swing.JLabel();
         jComboBox6 = new javax.swing.JComboBox<>();
-        jTextField10 = new javax.swing.JTextField();
+        txtCariTk = new javax.swing.JTextField();
         jButton12 = new javax.swing.JButton();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblTenagaKerja = new javax.swing.JTable();
         lblTotalPekerja = new javax.swing.JLabel();
+        txtPosisi = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         txtKodeOverhead = new javax.swing.JTextField();
-        txtNamaBiaya = new javax.swing.JTextField();
-        cbKategoriOverhead = new javax.swing.JComboBox<>();
+        txtJenisBiaya = new javax.swing.JTextField();
+        cbKodeProduksi = new javax.swing.JComboBox<>();
         jLabel48 = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         jLabel50 = new javax.swing.JLabel();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        txtKeteranganOverhead = new javax.swing.JTextArea();
+        txtPeriode = new javax.swing.JTextArea();
         txtBiayaOverhead = new javax.swing.JTextField();
         jPanel21 = new javax.swing.JPanel();
         btnTambahOverhead = new javax.swing.JButton();
@@ -486,7 +500,7 @@ public class MainMenuView extends javax.swing.JFrame {
         btnResetOverhead = new javax.swing.JButton();
         jLabel53 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox<>();
-        jTextField11 = new javax.swing.JTextField();
+        txtCariOverhead = new javax.swing.JTextField();
         jButton13 = new javax.swing.JButton();
         jScrollPane8 = new javax.swing.JScrollPane();
         tblOverhead = new javax.swing.JTable();
@@ -812,7 +826,7 @@ public class MainMenuView extends javax.swing.JFrame {
                 .addComponent(panelSubTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelSisaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 600));
@@ -1646,7 +1660,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(btnUbahBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHapusBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnResetBOM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2054,16 +2068,19 @@ public class MainMenuView extends javax.swing.JFrame {
         btnTambahTK.setText("+ Tambah");
         btnTambahTK.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTambahTK.setFocusPainted(false);
+        btnTambahTK.addActionListener(this::btnTambahTKActionPerformed);
 
         btnSimpanTK.setBackground(new java.awt.Color(255, 204, 0));
         btnSimpanTK.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSimpanTK.setText("Simpan");
         btnSimpanTK.setFocusPainted(false);
+        btnSimpanTK.addActionListener(this::btnSimpanTKActionPerformed);
 
         btnUbahTK.setBackground(new java.awt.Color(102, 102, 102));
         btnUbahTK.setForeground(new java.awt.Color(255, 255, 255));
         btnUbahTK.setText("Ubah");
         btnUbahTK.setFocusPainted(false);
+        btnUbahTK.addActionListener(this::btnUbahTKActionPerformed);
 
         btnHapusTK.setBackground(new java.awt.Color(204, 0, 51));
         btnHapusTK.setForeground(new java.awt.Color(255, 255, 255));
@@ -2075,6 +2092,7 @@ public class MainMenuView extends javax.swing.JFrame {
         btnResetTK.setForeground(new java.awt.Color(255, 255, 255));
         btnResetTK.setText("Reset");
         btnResetTK.setFocusPainted(false);
+        btnResetTK.addActionListener(this::btnResetTKActionPerformed);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
         jPanel20.setLayout(jPanel20Layout);
@@ -2088,7 +2106,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addComponent(btnUbahTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnHapusTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnResetTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2114,9 +2132,16 @@ public class MainMenuView extends javax.swing.JFrame {
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Produk", "Nama Produk" }));
 
+        txtCariTk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCariTkKeyReleased(evt);
+            }
+        });
+
         jButton12.setBackground(new java.awt.Color(255, 204, 0));
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton12.setText("Cari");
+        jButton12.addActionListener(this::jButton12ActionPerformed);
 
         tblTenagaKerja.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2129,10 +2154,17 @@ public class MainMenuView extends javax.swing.JFrame {
                 "Kode Pekerja", "Posisi", "Biaya/Hari"
             }
         ));
+        tblTenagaKerja.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTenagaKerjaMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(tblTenagaKerja);
 
         lblTotalPekerja.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalPekerja.setText("Total Pekerja : 0");
+
+        txtPosisi.addActionListener(this::txtPosisiActionPerformed);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -2143,23 +2175,25 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(jLabel44)
-                                        .addGap(31, 31, 31))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel45)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtBiayaHari, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                    .addComponent(cbPosisi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGap(57, 57, 57)
                                 .addComponent(jLabel46)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtKodePekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtKodePekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel45)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(jLabel44)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtPosisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtBiayaHari, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                        .addComponent(cbPosisi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(100, 100, 100)
                         .addComponent(jPanel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
@@ -2181,10 +2215,10 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGap(4, 4, 4)
                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCariTk, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(60, Short.MAX_VALUE)))
+                    .addContainerGap(56, Short.MAX_VALUE)))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2204,13 +2238,15 @@ public class MainMenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel44)
-                            .addComponent(txtBiayaHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtBiayaHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPosisi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblTotalPekerja)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel9Layout.createSequentialGroup()
                     .addGap(271, 271, 271)
@@ -2218,7 +2254,7 @@ public class MainMenuView extends javax.swing.JFrame {
                         .addComponent(jButton12)
                         .addComponent(jLabel47)
                         .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCariTk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(268, Short.MAX_VALUE)))
         );
 
@@ -2230,15 +2266,15 @@ public class MainMenuView extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setText("Master Overhead");
 
-        cbKategoriOverhead.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Meter", "Kg", "Pcs", "Roll", "Lusin" }));
+        cbKodeProduksi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Meter", "Kg", "Pcs", "Roll", "Lusin" }));
 
         jLabel48.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Kategori");
+        jLabel48.setText("Kode Produksi");
 
         jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel49.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel49.setText("Nama Biaya");
+        jLabel49.setText("Jenis Biaya");
 
         jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
@@ -2250,11 +2286,11 @@ public class MainMenuView extends javax.swing.JFrame {
 
         jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel52.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel52.setText("Keterangan");
+        jLabel52.setText("Periode");
 
-        txtKeteranganOverhead.setColumns(20);
-        txtKeteranganOverhead.setRows(5);
-        jScrollPane7.setViewportView(txtKeteranganOverhead);
+        txtPeriode.setColumns(20);
+        txtPeriode.setRows(5);
+        jScrollPane7.setViewportView(txtPeriode);
 
         jPanel21.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel21.setOpaque(false);
@@ -2264,16 +2300,19 @@ public class MainMenuView extends javax.swing.JFrame {
         btnTambahOverhead.setText("+ Tambah");
         btnTambahOverhead.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnTambahOverhead.setFocusPainted(false);
+        btnTambahOverhead.addActionListener(this::btnTambahOverheadActionPerformed);
 
         btnSimpanOverhead.setBackground(new java.awt.Color(255, 204, 0));
         btnSimpanOverhead.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnSimpanOverhead.setText("Simpan");
         btnSimpanOverhead.setFocusPainted(false);
+        btnSimpanOverhead.addActionListener(this::btnSimpanOverheadActionPerformed);
 
         btnUbahOverhead.setBackground(new java.awt.Color(102, 102, 102));
         btnUbahOverhead.setForeground(new java.awt.Color(255, 255, 255));
         btnUbahOverhead.setText("Ubah");
         btnUbahOverhead.setFocusPainted(false);
+        btnUbahOverhead.addActionListener(this::btnUbahOverheadActionPerformed);
 
         btnHapusOverhead.setBackground(new java.awt.Color(204, 0, 51));
         btnHapusOverhead.setForeground(new java.awt.Color(255, 255, 255));
@@ -2285,6 +2324,7 @@ public class MainMenuView extends javax.swing.JFrame {
         btnResetOverhead.setForeground(new java.awt.Color(255, 255, 255));
         btnResetOverhead.setText("Reset");
         btnResetOverhead.setFocusPainted(false);
+        btnResetOverhead.addActionListener(this::btnResetOverheadActionPerformed);
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -2322,9 +2362,16 @@ public class MainMenuView extends javax.swing.JFrame {
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kode Produk", "Nama Produk" }));
 
+        txtCariOverhead.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCariOverheadKeyReleased(evt);
+            }
+        });
+
         jButton13.setBackground(new java.awt.Color(255, 204, 0));
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton13.setText("Cari");
+        jButton13.addActionListener(this::jButton13ActionPerformed);
 
         tblOverhead.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -2337,6 +2384,11 @@ public class MainMenuView extends javax.swing.JFrame {
                 "Kode Overhead", "Nama Biaya", "Kategori", "Nominal Biaya", "Keterangan"
             }
         ));
+        tblOverhead.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOverheadMouseClicked(evt);
+            }
+        });
         jScrollPane8.setViewportView(tblOverhead);
 
         lblTotalOverhead.setForeground(new java.awt.Color(255, 255, 255));
@@ -2376,8 +2428,8 @@ public class MainMenuView extends javax.swing.JFrame {
                                             .addComponent(jLabel48))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNamaBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(cbKategoriOverhead, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txtJenisBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbKodeProduksi, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(25, 25, 25)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -2393,7 +2445,7 @@ public class MainMenuView extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel7Layout.createSequentialGroup()
                     .addGap(210, 210, 210)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCariOverhead, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(52, Short.MAX_VALUE)))
@@ -2414,12 +2466,12 @@ public class MainMenuView extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel49)
-                            .addComponent(txtNamaBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtJenisBiaya, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel52))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbKategoriOverhead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbKodeProduksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel48))
                             .addComponent(jScrollPane7)))
                     .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -2437,7 +2489,7 @@ public class MainMenuView extends javax.swing.JFrame {
                     .addGap(271, 271, 271)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton13)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCariOverhead, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(268, Short.MAX_VALUE)))
         );
 
@@ -2920,12 +2972,12 @@ public class MainMenuView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 755, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, Short.MAX_VALUE)
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 740, 600));
@@ -3180,6 +3232,29 @@ public class MainMenuView extends javax.swing.JFrame {
 
     private void btnHapusTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusTKActionPerformed
         // TODO add your handling code here:
+        String kode = txtKodePekerja.getText().trim();
+    
+        // Validasi apakah ada kode produk yang dipilih/akan dihapus
+        if (kode.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih pekerja yang ingin dihapus dari tabel terlebih dahulu!");
+            return;
+        }
+
+        // Konfirmasi hapus data demi keamanan data konveksi
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(this, 
+                "Apakah Anda yakin ingin menghapus tenaga kerja dengan kode: " + kode + "?", 
+                "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+            TkModel model = new TkModel();
+            model.setKode(kode);
+
+            tkcontroller.hapusData(model);
+
+            tkcontroller.tampildata(tblTenagaKerja);
+            btnResetActionPerformed(null);
+            lblTotalPekerja.setText("Total Data : " + tblTenagaKerja.getRowCount());
+        }
     }//GEN-LAST:event_btnHapusTKActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -3189,6 +3264,28 @@ public class MainMenuView extends javax.swing.JFrame {
 
     private void btnHapusOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusOverheadActionPerformed
         // TODO add your handling code here:
+        int kode = Integer.parseInt(txtKodeOverhead.getText());
+    
+        // Validasi apakah  dipilih/akan dihapus
+        if (kode == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih Kode Overhead yang ingin dihapus dari tabel terlebih dahulu!");
+            return;
+        }
+
+        // Konfirmasi hapus data demi keamanan data konveksi
+        int konfirmasi = javax.swing.JOptionPane.showConfirmDialog(this, 
+                "Apakah Anda yakin ingin menghapus bom dengan kode: " + kode + "?", 
+                "Konfirmasi Hapus", javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (konfirmasi == javax.swing.JOptionPane.YES_OPTION) {
+            OverheadModel overhead = new OverheadModel();
+            overhead.setId(Integer.parseInt(txtKodeOverhead.getText()));
+
+            overheadcontroller.hapusData(overhead);
+
+            overheadcontroller.tampildata(tblOverhead);
+            lblTotalOverhead.setText("Total Data : " + tblOverhead.getRowCount());
+        }
     }//GEN-LAST:event_btnHapusOverheadActionPerformed
 
     private void chkPotongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPotongActionPerformed
@@ -3619,6 +3716,190 @@ public class MainMenuView extends javax.swing.JFrame {
         lblTotalBOM.setText("Total Data : " + tblBOM.getRowCount());
     }//GEN-LAST:event_txtCariKeyRealesed
 
+    private void btnSimpanOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanOverheadActionPerformed
+        // TODO add your handling code here:
+        OverheadModel overhead = new OverheadModel();
+        String kodeTerpilih = cbKodeProduksi.getSelectedItem().toString();
+        overhead.setId(Integer.parseInt(txtKodeOverhead.getText()));
+        overhead.setKode(kodeTerpilih);
+        overhead.setJenis(txtJenisBiaya.getText()); 
+        overhead.setNominal(Integer.parseInt(txtBiayaOverhead.getText()));
+        overhead.setPeriode(txtPeriode.getText());
+
+        overheadcontroller.simpanData(overhead);
+        overheadcontroller.tampildata(tblOverhead); 
+        
+        btnTambahBOMActionPerformed(null);
+        
+        lblTotalOverhead.setText("Total Data : " + tblOverhead.getRowCount());
+    }//GEN-LAST:event_btnSimpanOverheadActionPerformed
+
+    private void btnTambahOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahOverheadActionPerformed
+        // TODO add your handling code here:
+        txtKodeOverhead.setText("");
+        cbKodeProduksi.setSelectedIndex(0); 
+        txtJenisBiaya.setText("");
+        txtBiayaOverhead.setText("");
+        txtPeriode.setText("");
+
+        aturForm(true);
+    }//GEN-LAST:event_btnTambahOverheadActionPerformed
+
+    private void btnResetOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetOverheadActionPerformed
+        // TODO add your handling code here:
+        txtKodeOverhead.setText("");
+        cbKodeProduksi.setSelectedIndex(0); 
+        txtJenisBiaya.setText("");
+        txtBiayaOverhead.setText("");
+        txtPeriode.setText("");
+
+        aturForm(true);
+    }//GEN-LAST:event_btnResetOverheadActionPerformed
+
+    private void btnUbahOverheadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahOverheadActionPerformed
+        // TODO add your handling code here:
+        int kode = Integer.parseInt(txtKodeOverhead.getText());
+        if (kode == 0) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data Overhead yang ingin diubah dari tabel terlebih dahulu!");
+            return;
+        }
+
+        OverheadModel overhead = new OverheadModel();
+        String kodeTerpilih = cbProdukBOM.getSelectedItem().toString();
+        overhead.setId(kode);
+        overhead.setKode(kodeTerpilih); 
+        overhead.setJenis(txtJenisBiaya.getText()); 
+        overhead.setNominal(Integer.parseInt(txtBiayaOverhead.getText()));
+        overhead.setPeriode(txtPeriode.getText());
+
+        overheadcontroller.ubahData(overhead);
+        overheadcontroller.tampildata(tblOverhead);
+        
+        btnTambahBOMActionPerformed(null);
+        aturForm(false);
+        
+    }//GEN-LAST:event_btnUbahOverheadActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void tblOverheadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOverheadMouseClicked
+        // TODO add your handling code here:
+        int baris = tblOverhead.getSelectedRow();
+    
+        txtKodeOverhead.setText(tblOverhead.getValueAt(baris, 0).toString());
+        txtJenisBiaya.setText(tblOverhead.getValueAt(baris, 1).toString());
+        cbKodeProduksi.setSelectedItem(tblOverhead.getValueAt(baris, 2).toString());
+        txtBiayaOverhead.setText(tblOverhead.getValueAt(baris, 3).toString());
+        txtPeriode.setText(tblOverhead.getValueAt(baris, 4).toString());
+        
+        aturForm(false);
+    }//GEN-LAST:event_tblOverheadMouseClicked
+
+    private void txtCariOverheadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariOverheadKeyReleased
+        // TODO add your handling code here:
+        String keyword = txtCariOverhead.getText().trim();
+        
+
+        // Terjemahkan kriteria dari ComboBox ke nama kolom asli di MySQL
+        if (keyword.isEmpty()) {
+            overheadcontroller.tampildata(tblOverhead);
+        } else {
+            overheadcontroller.cariData(tblOverhead , keyword);
+        }
+ 
+        // Panggil controller menggunakan nama kolom database yang benar
+        overheadcontroller.cariData(tblOverhead, keyword);
+        // Update total data
+        lblTotalOverhead.setText("Total Data : " + tblOverhead.getRowCount());
+    }//GEN-LAST:event_txtCariOverheadKeyReleased
+
+    private void txtPosisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPosisiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPosisiActionPerformed
+
+    private void btnSimpanTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanTKActionPerformed
+        // TODO add your handling code here:
+        TkModel model = new TkModel();
+        model.setKode(txtKodePekerja.getText());
+        model.setNama(txtPosisi.getText());
+        model.setBiaya(Double.parseDouble(txtBiayaHari.getText())); 
+
+        tkcontroller.simpanData(model);
+        tkcontroller.tampildata(tblTenagaKerja);
+        
+        btnTambahTKActionPerformed(null);
+        
+        lblTotalPekerja.setText("Total Data : " + tblTenagaKerja.getRowCount());
+    }//GEN-LAST:event_btnSimpanTKActionPerformed
+
+    private void btnTambahTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahTKActionPerformed
+        // TODO add your handling code here:
+        txtKodePekerja.setText("");
+        txtPosisi.setText("");
+        txtBiayaHari.setText(""); 
+
+        aturForm(true);
+    }//GEN-LAST:event_btnTambahTKActionPerformed
+
+    private void btnUbahTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahTKActionPerformed
+        // TODO add your handling code here:
+        String kode = txtKodePekerja.getText().trim();
+        if (kode.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Silakan pilih data pekerja yang ingin diubah dari tabel terlebih dahulu!");
+            return;
+        }
+
+        TkModel model = new TkModel();
+        model.setKode(kode);
+        model.setNama(txtPosisi.getText());
+        model.setBiaya(Double.parseDouble(txtBiayaHari.getText())); 
+
+        tkcontroller.ubahData(model);
+        tkcontroller.tampildata(tblTenagaKerja);
+        
+        btnTambahTKActionPerformed(null);
+        aturForm(false);
+    }//GEN-LAST:event_btnUbahTKActionPerformed
+
+    private void btnResetTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetTKActionPerformed
+        // TODO add your handling code here:
+        txtKodePekerja.setText("");
+        txtPosisi.setText("");
+        txtBiayaHari.setText(""); 
+
+        aturForm(true);
+    }//GEN-LAST:event_btnResetTKActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void txtCariTkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariTkKeyReleased
+        // TODO add your handling code here:
+        String keyword = txtCariTk.getText().trim();
+        
+        if (keyword.isEmpty()) {
+            tkcontroller.tampildata(tblTenagaKerja);
+        } else {
+            tkcontroller.cariData(tblTenagaKerja, keyword);
+        }
+        
+        lblTotalPekerja.setText("Total Data : " + tblTenagaKerja.getRowCount());
+    }//GEN-LAST:event_txtCariTkKeyReleased
+
+    private void tblTenagaKerjaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTenagaKerjaMouseClicked
+        // TODO add your handling code here:
+        int baris = tblTenagaKerja.getSelectedRow();
+    
+        txtKodePekerja.setText(tblTenagaKerja.getValueAt(baris, 0).toString());
+        txtPosisi.setText(tblTenagaKerja.getValueAt(baris, 1).toString());
+        txtBiayaHari.setText(tblTenagaKerja.getValueAt(baris, 2).toString());
+        
+        aturForm(false);
+    }//GEN-LAST:event_tblTenagaKerjaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -3695,9 +3976,9 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cbCariBom;
     private javax.swing.JComboBox<String> cbCariProduk;
     private javax.swing.JComboBox<String> cbKategori;
-    private javax.swing.JComboBox<String> cbKategoriOverhead;
     private javax.swing.JComboBox<String> cbKodeBOM;
     private javax.swing.JComboBox<String> cbKodeBahan;
+    private javax.swing.JComboBox<String> cbKodeProduksi;
     private javax.swing.JComboBox<String> cbKodeProduksiHPP;
     private javax.swing.JComboBox<String> cbPosisi;
     private javax.swing.JComboBox<String> cbProdukBOM;
@@ -3832,8 +4113,6 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JLabel lblHPP;
     private javax.swing.JLabel lblHPPPcs;
@@ -3866,16 +4145,18 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtBiayaOverhead;
     private javax.swing.JTextField txtCariBB;
     private javax.swing.JTextField txtCariBom;
+    private javax.swing.JTextField txtCariOverhead;
     private javax.swing.JTextField txtCariProduk;
+    private javax.swing.JTextField txtCariTk;
     private javax.swing.JTextField txtCustomer;
     private javax.swing.JTextField txtDeskripsi;
     private javax.swing.JTextField txtHargaBeli;
     private javax.swing.JTextField txtHargaDetail;
     private javax.swing.JTextField txtHargaSatuan;
+    private javax.swing.JTextField txtJenisBiaya;
     private javax.swing.JTextField txtJumlahHPP;
     private javax.swing.JTextField txtJumlahProduksi;
     private javax.swing.JTextField txtKetaranganBOM;
-    private javax.swing.JTextArea txtKeteranganOverhead;
     private javax.swing.JTextField txtKodeBOM;
     private javax.swing.JTextField txtKodeBahan;
     private javax.swing.JTextField txtKodeDetail;
@@ -3886,9 +4167,10 @@ public class MainMenuView extends javax.swing.JFrame {
     private javax.swing.JTextField txtKomponen;
     private javax.swing.JTextField txtNamaBahan;
     private javax.swing.JTextField txtNamaBahanDetail;
-    private javax.swing.JTextField txtNamaBiaya;
     private javax.swing.JTextField txtNamaProduk;
     private javax.swing.JTextField txtNoProduksi;
+    private javax.swing.JTextArea txtPeriode;
+    private javax.swing.JTextField txtPosisi;
     private javax.swing.JTextField txtProdukHPP;
     private javax.swing.JComboBox<String> txtProdukTransaksi;
     private javax.swing.JTextField txtQtyBeli;

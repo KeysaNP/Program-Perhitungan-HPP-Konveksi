@@ -90,7 +90,7 @@
                   <Component id="panelSubTransaksi" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelSisaMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="9" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -2195,7 +2195,7 @@
                                   <Component id="btnHapusBOM" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetBOM" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="8" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2942,29 +2942,32 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                                                  <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtBiayaHari" pref="304" max="32767" attributes="0"/>
-                                              <Component id="cbPosisi" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
                                           <Component id="jLabel46" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="txtKodePekerja" min="-2" pref="117" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                                                  <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="txtPosisi" min="-2" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtBiayaHari" pref="304" max="32767" attributes="0"/>
+                                                  <Component id="cbPosisi" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
@@ -2996,10 +2999,10 @@
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="jComboBox6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField10" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="txtCariTk" min="-2" pref="300" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton12" min="-2" pref="142" max="-2" attributes="0"/>
-                              <EmptySpace pref="60" max="32767" attributes="0"/>
+                              <EmptySpace pref="56" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -3026,6 +3029,8 @@
                                       <Component id="jLabel44" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtBiayaHari" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtPosisi" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jPanel20" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -3033,7 +3038,7 @@
                           <Component id="jScrollPane6" min="-2" pref="145" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lblTotalPekerja" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="57" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
@@ -3042,7 +3047,7 @@
                                   <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField10" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCariTk" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="268" max="32767" attributes="0"/>
                           </Group>
@@ -3123,7 +3128,7 @@
                                   <Component id="btnHapusTK" alignment="1" max="32767" attributes="0"/>
                                   <Component id="btnResetTK" alignment="1" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -3160,6 +3165,9 @@
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahTKActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSimpanTK">
                       <Properties>
@@ -3172,6 +3180,9 @@
                         <Property name="text" type="java.lang.String" value="Simpan"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanTKActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnUbahTK">
                       <Properties>
@@ -3184,6 +3195,9 @@
                         <Property name="text" type="java.lang.String" value="Ubah"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUbahTKActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnHapusTK">
                       <Properties>
@@ -3211,6 +3225,9 @@
                         <Property name="text" type="java.lang.String" value="Reset"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetTKActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3253,7 +3270,10 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField10">
+                <Component class="javax.swing.JTextField" name="txtCariTk">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCariTkKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton12">
                   <Properties>
@@ -3265,6 +3285,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cari"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane6">
                   <AuxValues>
@@ -3305,6 +3328,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblTenagaKerjaMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3315,6 +3341,11 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Total Pekerja : 0"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtPosisi">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPosisiActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -3370,8 +3401,8 @@
                                                   </Group>
                                                   <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="txtNamaBiaya" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
-                                                      <Component id="cbKategoriOverhead" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                                                      <Component id="txtJenisBiaya" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                                                      <Component id="cbKodeProduksi" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -3398,7 +3429,7 @@
                       <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
-                              <Component id="jTextField11" min="-2" pref="341" max="-2" attributes="0"/>
+                              <Component id="txtCariOverhead" min="-2" pref="341" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton13" min="-2" pref="140" max="-2" attributes="0"/>
                               <EmptySpace pref="52" max="32767" attributes="0"/>
@@ -3423,13 +3454,13 @@
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="jLabel49" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="txtNamaBiaya" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtJenisBiaya" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cbKategoriOverhead" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cbKodeProduksi" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel48" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jScrollPane7" max="32767" attributes="0"/>
@@ -3453,7 +3484,7 @@
                               <EmptySpace min="-2" pref="271" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jButton13" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCariOverhead" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="268" max="32767" attributes="0"/>
                           </Group>
@@ -3475,9 +3506,9 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtKodeOverhead">
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtNamaBiaya">
+                <Component class="javax.swing.JTextField" name="txtJenisBiaya">
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cbKategoriOverhead">
+                <Component class="javax.swing.JComboBox" name="cbKodeProduksi">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="5">
@@ -3501,7 +3532,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Kategori"/>
+                    <Property name="text" type="java.lang.String" value="Kode Produksi"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel49">
@@ -3512,7 +3543,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nama Biaya"/>
+                    <Property name="text" type="java.lang.String" value="Jenis Biaya"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel50">
@@ -3545,7 +3576,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Keterangan"/>
+                    <Property name="text" type="java.lang.String" value="Periode"/>
                   </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane7">
@@ -3555,7 +3586,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTextArea" name="txtKeteranganOverhead">
+                    <Component class="javax.swing.JTextArea" name="txtPeriode">
                       <Properties>
                         <Property name="columns" type="int" value="20"/>
                         <Property name="rows" type="int" value="5"/>
@@ -3626,6 +3657,9 @@
                         </Property>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTambahOverheadActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnSimpanOverhead">
                       <Properties>
@@ -3638,6 +3672,9 @@
                         <Property name="text" type="java.lang.String" value="Simpan"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimpanOverheadActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnUbahOverhead">
                       <Properties>
@@ -3650,6 +3687,9 @@
                         <Property name="text" type="java.lang.String" value="Ubah"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUbahOverheadActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btnHapusOverhead">
                       <Properties>
@@ -3677,6 +3717,9 @@
                         <Property name="text" type="java.lang.String" value="Reset"/>
                         <Property name="focusPainted" type="boolean" value="false"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnResetOverheadActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -3704,7 +3747,10 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField11">
+                <Component class="javax.swing.JTextField" name="txtCariOverhead">
+                  <Events>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCariOverheadKeyReleased"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton13">
                   <Properties>
@@ -3716,6 +3762,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cari"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane8">
                   <AuxValues>
@@ -3768,6 +3817,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblOverheadMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

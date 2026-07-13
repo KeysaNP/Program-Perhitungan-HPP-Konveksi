@@ -33,7 +33,7 @@ public class TkModel {
         this.nama_proses = nama_proses;
     }
     
-    public double getBiaya(){
+    public Double getBiaya(){
         return biaya_harian;
     }
     
